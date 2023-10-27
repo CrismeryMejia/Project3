@@ -1,5 +1,6 @@
 
 
+
 function App(){
     return (
         <div>
@@ -9,4 +10,4 @@ function App(){
 }
 
 
-ReactDOM.render(<App />, root)
+ReactDOM.render(<App />, document.getElementById("root"));

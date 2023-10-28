@@ -1,35 +1,34 @@
+import React, { useState } from 'react';
 
 
 
-const winningCombos = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6], [1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]];
-const squares = Array.from(document.querySelectorAll('#board div'));
-const messages = document.querySelector('h2');
+const App = () => {
+  const [board, setBoard] = useState(["","","","","","","","",""])
 
-const [board, setBoard] = React.useState(["","","","","","","","",""])
-let turn = "X";
+  const winningCombos = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6], [1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]];
+  const squares = Array.from(document.querySelectorAll('#board div'));
+  const messages = document.querySelector('h2');
 
-let win;
+  let turn = "X";
 
-let gameOver = false
+  let win;
 
-
-const handleTurn = (event) => {
-  console.log(event.target, event.target.id)
-  let idx = event.target.id;
-  if (gameOver === false){
-    let newBoard = [...board]
-    newBoard[idx] = turn
-    board[idx] = turn;
-    setBoard(newBoard)
-    turn = turn === 'X'? 'O' : 'X'
-    // win = getWinner();
-    // render();
-  }
-};
+  let gameOver = false
 
 
+  const handleTurn = (event) => {
+    console.log(event.target, event.target.id);
+    let idx = event.target.id;
+    if (!gameOver) {
+      let newBoard = [...board];
+      newBoard[idx] = turn;
+      setBoard(newBoard);
+      turn = turn === 'X' ? 'O' : 'X';
+      // win = getWinner();
+      // render();
+    }
+  };
 
-function App(){
     return (
     <div>
       <h1>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+
 
 
 
 const App = () => {
-  const [board, setBoard] = useState(["","","","","","","","",""])
+  const [board, setBoard] = React.useState(["","","","","","","","",""])
+  // let board = (["","","","","","","","",""])
 
   const winningCombos = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6], [1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]];
   const squares = Array.from(document.querySelectorAll('#board div'));
@@ -54,4 +55,4 @@ const App = () => {
 }
 
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));

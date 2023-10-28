@@ -1,35 +1,55 @@
 
 
 
+const winningCombos = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6], [1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]];
+const squares = Array.from(document.querySelectorAll('#board div'));
+const messages = document.querySelector('h2');
+
+const [board, setBoard] = React.useState(["","","","","","","","",""])
+let turn = "X";
+
+let win;
+
+let gameOver = false
+
+
+const handleTurn = (event) => {
+  console.log(event.target, event.target.id)
+  let idx = event.target.id;
+  if (gameOver === false){
+    let newBoard = [...board]
+    newBoard[idx] = turn
+    board[idx] = turn;
+    setBoard(newBoard)
+    turn = turn === 'X'? 'O' : 'X'
+    // win = getWinner();
+    // render();
+  }
+};
+
+
+
 function App(){
     return (
     <div>
       <h1>
         Tic-React-Toe
       </h1>
-      <main class="background">
-        <section class="title">
-          <h1>Crismery's Tic Tac Toe</h1>
-        </section>
-        <section class="display">
-          Player <span class="display-player playerX">X</span>'s turn
-        </section>
-        <section class="container">
-          <div class="tile"></div>
-          <div class="tile"></div>
-          <div class="tile"></div>
-          <div class="tile"></div>
-          <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-            <div class="tile"></div>
-          </section>
-          <section class="display announcer hide"></section>
-          <section class="controls">
-            <button id="reset">Reset</button>
-          </section>
-        </main>
+      <h2>It's X's turn!</h2>
+      <div className="flex-container flex-column">
+        <div className="flex-container flex-wrap square" id="board" onClick={handleTurn}>
+          {
+            board.map((value, idx) => {
+              return(
+                <div  className = 'square'key={idx}>
+                  {value}
+                </div>
+              )
+            })
+          }
+        </div>
+        <button id="reset-button">reset</button>
+      </div>
     </div>
   )
 }
